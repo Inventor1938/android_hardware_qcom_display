@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2014 - 2015, The Linux Foundation. All rights reserved.
+* Copyright (c) 2014 - 2016, The Linux Foundation. All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted
 * provided that the following conditions are met:
@@ -80,6 +80,9 @@ class CompManager : public DumpImpl {
     bool idle_fallback = false;
     bool fallback_ = false;
     uint32_t partial_update_enable = true;
+    // Using primary panel flag of hw panel to configure Constraints. We do not need other hw
+    // panel parameters for now.
+    bool is_primary_panel = false;
   };
 
   Locker locker_;
@@ -92,6 +95,7 @@ class CompManager : public DumpImpl {
                                         // that uses optimal number of pipes for each display
   HWResourceInfo hw_res_info_;
   ExtensionInterface *extension_intf_ = NULL;
+  uint32_t max_layers_ = kMaxSDELayers;
 };
 
 }  // namespace sdm

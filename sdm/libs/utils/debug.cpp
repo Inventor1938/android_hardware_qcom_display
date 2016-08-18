@@ -59,6 +59,13 @@ int Debug::GetIdleTimeoutMs() {
   return value;
 }
 
+int Debug::GetBootAnimLayerCount() {
+  int value = 0;
+  debug_.debug_handler_->GetProperty("sdm.boot_anim_layer_count", &value);
+
+  return value;
+}
+
 bool Debug::IsRotatorDownScaleDisabled() {
   int value = 0;
   debug_.debug_handler_->GetProperty("sdm.debug.rotator_downscale", &value);
@@ -135,6 +142,14 @@ bool Debug::IsUbwcTiledFrameBuffer() {
 
 bool Debug::GetProperty(const char* property_name, char* value) {
   if (debug_.debug_handler_->GetProperty(property_name, value) != kErrorNone) {
+    return false;
+  }
+
+  return true;
+}
+
+bool Debug::SetProperty(const char* property_name, const char* value) {
+  if (debug_.debug_handler_->SetProperty(property_name, value) != kErrorNone) {
     return false;
   }
 

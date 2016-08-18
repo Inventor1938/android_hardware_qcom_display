@@ -64,6 +64,7 @@ class Debug {
   static int GetSimulationFlag();
   static int GetHDMIResolution();
   static int GetIdleTimeoutMs();
+  static int GetBootAnimLayerCount();
   static bool IsRotatorDownScaleDisabled();
   static bool IsDecimationDisabled();
   static int GetMaxPipesPerMixer(DisplayType display_type);
@@ -73,6 +74,7 @@ class Debug {
   static bool IsScalarDisabled();
   static bool IsUbwcTiledFrameBuffer();
   static bool GetProperty(const char *property_name, char *value);
+  static bool SetProperty(const char *property_name, const char *value);
 
  private:
   Debug();
@@ -93,6 +95,9 @@ class Debug {
       return kErrorNotSupported;
     }
     virtual DisplayError GetProperty(const char */*property_name*/, char */*value*/) {
+      return kErrorNotSupported;
+    }
+    virtual DisplayError SetProperty(const char */*property_name*/, const char */*value*/) {
       return kErrorNotSupported;
     }
   };
